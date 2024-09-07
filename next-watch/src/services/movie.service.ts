@@ -25,6 +25,7 @@ export async function getMovieByImdbId(imdbId: string) {
         TmdbService.getMovieByImdbId(imdbId),
         OmdbService.getMovieByImdbId(imdbId),
       ]);
+      console.log({ tmdbMovie, omdbMovie });
       const movie = createMovie({ tmdbMovie, omdbMovie });
 
       return movie;

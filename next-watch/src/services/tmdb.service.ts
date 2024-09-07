@@ -23,7 +23,8 @@ export async function getMovieByImdbId(imdbId: string) {
     const detailsResponse = await fetch(getMovieDetailsUrl(imdbId), getOptions());
     if (detailsResponse.ok) {
       const movieDetails: MovieWithDetails | undefined = await detailsResponse.json();
-      if (!!movieDetails) {
+      if (!!movieDetails?.id) {
+        // NOTE: Checking ID because TMDB can return a successful fail
         return movieDetails;
       }
     }
@@ -39,7 +40,8 @@ export async function getMovieByImdbId(imdbId: string) {
       return null;
     }
     const movie = await findResponse.json();
-    if (!movie) {
+    if (!movie?.id) {
+      // NOTE: Checking ID because TMDB can return a successful fail
       return null;
     }
     const detailsResponse = await fetch(getMovieDetailsUrl(movie.id), getOptions());

@@ -16,6 +16,12 @@ export async function getMovieByImdbId(imdbId: string) {
     }
     const movie: Movie | undefined = await res.json();
 
+    if (!!(movie as any).Error) {
+      console.error(ERROR_PREFIX, { ...movie });
+
+      return null;
+    }
+
     return movie ?? null;
   } catch (err) {
     console.error(ERROR_PREFIX, err);
