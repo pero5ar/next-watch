@@ -50,6 +50,8 @@ async function MovieDetails({ params: { imdbId } }: { params: Params; }) {
             <span title="Release year">{movie.year}</span>
             <span>, </span>
             <span title="Runtime">{movie.duration} min</span>
+            <span>, </span>
+            <span title="Score"><strong>{movie.score}%</strong></span>
           </div>
           <br />
           <div title="Description">

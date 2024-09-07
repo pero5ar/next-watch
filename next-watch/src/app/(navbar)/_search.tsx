@@ -38,7 +38,6 @@ function NavbarSearch({ search }: Props) {
   // Add a click event listener to the document body to handle clicks outside of the component
   useEffect(() => {
     const handleDocumentClick = (e: any) => {
-      console.log('HELLO THERE');
       if (inputRef.current && !inputRef.current.contains(e.target)) {
         inputRef.current.blur();
         setSuggestions([]);

@@ -22,7 +22,6 @@ export const FavoritesDispatchContext = createContext<Dispatch<FavoritesAction>>
 export function FavoritesProvider({ children }: PropsWithChildren) {
   const [favoritesState, favoritesDispatch] = useReducer(
     (state: FavoritesState, action: FavoritesAction): FavoritesState => {
-      console.log('reducer here', action);
       switch (action.type) {
         case 'ADD': {
           const { isNew } = FavoritesStorage.save(action.payload);
@@ -35,7 +34,6 @@ export function FavoritesProvider({ children }: PropsWithChildren) {
         }
         case 'REMOVE': {
           const exists = FavoritesStorage.remove(action.payload.imdbId);
-          console.log(exists);
           if (!exists) {
             return state;
           }
@@ -73,8 +71,6 @@ export function FavoritesProvider({ children }: PropsWithChildren) {
       window.removeEventListener('storage', storageEventHandler);
     };
   }, [storageEventHandler]);
-
-  console.log('FavoritesProvider');
 
   return (
     <FavoritesDispatchContext.Provider value={favoritesDispatch}>
