@@ -15,7 +15,8 @@ export async function generateMetadata({ params: { imdbId } }: { params: Params;
   const movie = await getMovieByImdbId(imdbId);
 
   return {
-    title: movie?.title ?? 'Movie Details',
+    title: movie?.title ?? 'Unknown Movie',
+    description: movie?.description,
   };
 }
 

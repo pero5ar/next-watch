@@ -1,7 +1,7 @@
 import 'server-only';
 
 import { unstable_cache } from 'next/cache';
-import { Genre, MovieWithDetails } from '@/models/api/tmdb.apiModels';
+import { Genre, MovieWithDetails, SearchResult } from '@/models/api/tmdb.apiModels';
 
 const ERROR_PREFIX = '[TMDB Service Error]';
 
@@ -78,3 +78,54 @@ export const getGenreLookup = unstable_cache(
   },
   ['tmdb-genre-lookup']
 );
+
+export async function getImdbIdByTmdbId(tmdbId: number): Promise<string | null> {
+  // NOTE: no extra caching added because fetch is cached by default
+  if (!tmdbId || isNaN(tmdbId)) {
+    return null;
+  }
+  const url = `https://api.themoviedb.org/3/movie/${tmdbId}/external_ids`;
+
+  try {
+    const res = await fetch(url, getOptions());
+    if (!res.ok) {
+      console.error(ERROR_PREFIX, { status: res.status });
+
+      return null;
+    }
+    const result = await res.json();
+
+    return result['imdb_id'] ?? null;
+  } catch (err) {
+    console.error(ERROR_PREFIX, err);
+
+    return null;
+  }
+}
+
+export async function findMovies(query: string): Promise<SearchResult> {
+  const page = 1;
+  const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}&include_adult=false&language=en-US&page=${page}`;
+  const noResults: SearchResult = {
+    page,
+    results: [],
+    total_pages: 0, // eslint-disable-line camelcase
+    total_results: 0, // eslint-disable-line camelcase
+  };
+
+  try {
+    const res = await fetch(url, getOptions());
+    if (!res.ok) {
+      console.error(ERROR_PREFIX, { status: res.status });
+
+      return noResults;
+    }
+    const result = await res.json();
+
+    return result;
+  } catch (err) {
+    console.error(ERROR_PREFIX, err);
+
+    return noResults;
+  }
+}

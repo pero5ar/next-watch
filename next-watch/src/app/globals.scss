@@ -47,6 +47,8 @@
   --space-lg:   calc(2 * var(--space-unit));    // 32px
   --space-xl:   calc(3.25 * var(--space-unit)); // 52px
   --space-xxl:  calc(5.25 * var(--space-unit)); // 84px
+
+  --navbar-height: 50px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -107,6 +109,12 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+nav {
+  height: var(--navbar-height);
+  position: sticky;
+  background-color: #000;
 }
 
 @media (prefers-color-scheme: dark) {

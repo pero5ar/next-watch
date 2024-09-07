@@ -1,6 +1,8 @@
 .page {
   display: grid;
   background: linear-gradient(90deg, #fff 50%, #fffa);
+  padding: var(--space-xs);
+
   grid-template-columns: minmax(300px, 1fr) repeat(3, 1fr);
   grid-template-rows: auto 1fr;
   grid-template-areas:
