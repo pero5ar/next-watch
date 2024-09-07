@@ -49,6 +49,7 @@
   --space-xxl:  calc(5.25 * var(--space-unit)); // 84px
 
   --navbar-height: 50px;
+  --poster-height-to-width-ratio: 1.5;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -97,6 +98,7 @@ body {
 }
 
 body {
+  min-height: 100vh;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,

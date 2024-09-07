@@ -1,17 +1,19 @@
+$input-height: 35px;
+
 .container {
   position: relative;
-  width: 300px;
+  display: flex;
+  width: 330px;
+  height: 100%;
 }
 
 .input {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border-radius: 0.375rem;
-  border-width: 1px;
+  align-self: center;
+  height: $input-height;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--space-xxs);
   width: 100%;
-  color: #000000;
+  color: #000;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
@@ -21,30 +23,27 @@
 .result-list {
   overflow-y: auto;
   position: absolute;
-  top: 3.5rem;
-  z-index: 20;
-  border-radius: 0.25rem;
-  border-width: 2px;
-  border-color: #3B82F6;
+  top: calc(var(--navbar-height) / 2 + #{$input-height} / 2 - 1px);
+  z-index: 1;
+  border-radius: 0 0 var(--space-md) var(--space-md);
+  // border-color: #3B82F6;
   width: 100%;
-  max-height: 16rem;
   background-color: #ffffff;
-  :hover {
+
+  &:hover {
     cursor: pointer;
   }
 }
 
 .result-item {
-  padding: 0.25rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+  font-size: smaller;
   color: #374151;
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
   transition-duration: 200ms;
 
-  :hover {
+  &:hover {
     color: #ffffff;
     background-color: #3B82F6;
   }

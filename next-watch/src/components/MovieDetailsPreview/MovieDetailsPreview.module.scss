@@ -1,0 +1,9 @@
+.container {
+  width: 300px;
+  padding: var(--space-xxs);
+  height: calc((50px * var(--poster-height-to-width-ratio)) + (2 * var(--space-xxs)));
+
+  display: grid;
+  grid-template-columns: 50px auto;
+  gap: var(--space-xxs);
+}

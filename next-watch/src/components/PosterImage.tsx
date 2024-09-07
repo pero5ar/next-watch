@@ -7,13 +7,14 @@ interface Props {
   name?: string;
   width: '50' | '300' | 'fill';
   tmdbPath: string | undefined;
-  omdbPath: string | undefined;
+  omdbPath?: string | undefined;
+  fallback?: JSX.Element;
 }
 
 const HEIGHT_TO_WIDTH_RATIO = 1.5;
 
 function PosterImage({
-  name, width, tmdbPath, omdbPath,
+  name, width, tmdbPath, omdbPath, fallback,
 }: Props) {
   const numericWidth = width === 'fill' ? undefined : Number(width);
 
@@ -25,7 +26,7 @@ function PosterImage({
   }
 
   if (!src) {
-    return null;
+    return fallback ?? src;
   }
   const sizeProps = numericWidth === undefined
     ? { fill: true }

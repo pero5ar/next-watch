@@ -5,6 +5,7 @@ import { useRef, useState, useEffect, useCallback, ChangeEvent } from 'react';
 import debounce from 'debounce';
 
 import { MovieSuggestion } from '@/models/movieSuggestion.model';
+import MovieDetailsPreview from '@/components/MovieDetailsPreview/MovieDetailsPreview';
 
 import styles from './_search.module.scss';
 
@@ -79,10 +80,10 @@ function NavbarSearch({ search }: Props) {
       {suggestions.length > 0 && (
         <ul
           className={styles['result-list']}
-          onPointerLeave={() => {
-            inputRef?.current?.blur();
-            setSuggestions([]);
-          }}
+          // onPointerLeave={() => {
+          //   inputRef?.current?.blur();
+          //   setSuggestions([]);
+          // }}
         >
           {suggestions.map((movie) => (
             <li
@@ -90,7 +91,7 @@ function NavbarSearch({ search }: Props) {
               className={styles['result-item']}
               onClick={() => onSuggestionClick(movie)}
             >
-              {`[${movie.imdbId}] ${movie.title}`}
+              <MovieDetailsPreview movie={movie} />
             </li>
           ))}
         </ul>
