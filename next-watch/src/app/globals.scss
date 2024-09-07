@@ -119,6 +119,10 @@ nav {
   background-color: #000;
 }
 
+main {
+  height: calc(100vh - var(--navbar-height));
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

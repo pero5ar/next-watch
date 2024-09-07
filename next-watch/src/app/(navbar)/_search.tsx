@@ -2,9 +2,10 @@
 'use client';
 
 import { useRef, useState, useEffect, useCallback, ChangeEvent } from 'react';
+import { useRouter } from 'next/navigation';
 import debounce from 'debounce';
 
-import { MovieSuggestion } from '@/models/movieSuggestion.model';
+import type { MovieSuggestion } from '@/models/movieSuggestion.model';
 import MovieDetailsPreview from '@/components/MovieDetailsPreview/MovieDetailsPreview';
 
 import styles from './_search.module.scss';
@@ -14,6 +15,7 @@ interface Props {
 }
 
 function NavbarSearch({ search }: Props) {
+  const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState('');
   const [suggestions, setSuggestions] = useState<MovieSuggestion[]>([]);
@@ -29,8 +31,8 @@ function NavbarSearch({ search }: Props) {
   }, []);
 
   const onSuggestionClick = (suggestion: MovieSuggestion) => {
-    setValue(suggestion.title);
-    setSuggestions([]);
+    setInitialState();
+    router.push(`/movies/details/${suggestion.imdbId}`);
   };
 
   // Add a click event listener to the document body to handle clicks outside of the component
@@ -78,13 +80,7 @@ function NavbarSearch({ search }: Props) {
         onFocus={setInitialState}
       />
       {suggestions.length > 0 && (
-        <ul
-          className={styles['result-list']}
-          // onPointerLeave={() => {
-          //   inputRef?.current?.blur();
-          //   setSuggestions([]);
-          // }}
-        >
+        <ul className={styles['result-list']}>
           {suggestions.map((movie) => (
             <li
               key={movie.imdbId}

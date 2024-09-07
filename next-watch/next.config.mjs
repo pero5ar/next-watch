@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false, // duplicate providers were being registered and firing duplicate events
   images: {
     remotePatterns: [
       {

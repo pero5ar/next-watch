@@ -1,6 +1,6 @@
 'use client';
 
-import { MovieSuggestion } from '@/models/movieSuggestion.model';
+import type { MovieSuggestion } from '@/models/movieSuggestion.model';
 import PosterImage from '@/components/PosterImage';
 
 import styles from './MovieDetailsPreview.module.scss';
@@ -19,8 +19,8 @@ function MovieDetailsPreview({ movie }: Props) {
         fallback={<div />}
       />
       <div>
-        <span>{movie.title}</span>
-        <span>({movie.year})</span>
+        <span className={styles.title}>{movie.title}</span>
+        <span className={styles.year}> ({movie.year})</span>
       </div>
     </div>
   );

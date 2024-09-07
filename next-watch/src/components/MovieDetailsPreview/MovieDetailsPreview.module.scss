@@ -1,9 +1,35 @@
 .container {
-  width: 300px;
+  width: 100%;
   padding: var(--space-xxs);
   height: calc((50px * var(--poster-height-to-width-ratio)) + (2 * var(--space-xxs)));
 
   display: grid;
   grid-template-columns: 50px auto;
   gap: var(--space-xxs);
+
+  // color: rgb(var(--foreground-rgb));
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  transition-duration: 200ms;
+
+  &:hover {
+    // color: rgb(var(--foreground-rgb));;
+    background: linear-gradient(
+      to bottom right,
+      rgba(1, 65, 255, 0.1),
+      rgba(1, 65, 255, 0.15),
+      rgba(1, 65, 255, 0.3)
+    );
+    // background: rgba(var(--card-rgb), 0.1);
+    // background-color: #3B82F6;
+  }
+}
+
+.title {
+  font-size: larger;
+}
+
+.year {
+  font-size: smaller;
 }

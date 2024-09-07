@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.scss';
+
+import { FavoritesProvider } from '@/contexts/favorites/favorites.context';
+
 import NavbarSearch from './(navbar)/_search';
 import { searchForMovies } from './actions';
+
+import './globals.scss';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,10 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav>
-          <NavbarSearch search={searchForMovies} />
-        </nav>
-        {children}
+        <FavoritesProvider>
+          <nav>
+            <NavbarSearch search={searchForMovies} />
+          </nav>
+          <main>
+            {children}
+          </main>
+        </FavoritesProvider>
       </body>
     </html>
   );

@@ -2,9 +2,10 @@
   position: absolute;
   z-index: -1;
   right: 0;
-  top: calc(var(--navbar-height));
+  top: var(--navbar-height);
   width: 100%;
-  height: 500px;
+  height: fit-content;
+  max-height: calc(100% - var(--navbar-height));
   overflow: hidden;
 
   @media (width < 900px) {

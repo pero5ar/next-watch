@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { getMovieByImdbId } from '@/services/movie.service';
 import PosterImage from '@/components/PosterImage';
+import FavoriteButton from '@/components/FavoriteButton';
 
 import styles from './page.module.scss';
 import Backdrop from './_backdrop';
@@ -40,6 +41,9 @@ async function MovieDetails({ params: { imdbId } }: { params: Params; }) {
             tmdbPath={movie.tmdbPosterPath}
             omdbPath={movie.omdbPosterPath}
           />
+          <div>
+            <FavoriteButton movie={movie} />
+          </div>
         </div>
         <div className={styles['info-section-one']}>
           <div>
