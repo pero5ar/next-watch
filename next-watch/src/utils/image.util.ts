@@ -31,8 +31,9 @@ export function getTmdbPosterImage(path: string, width?: number) {
   return `${TMDB_IMAGE_ROOT}/${getPosterSize(width)}/${path}`;
 }
 
+/** Hardcoded to use 1200 width */
 export function getTmdbBackdropImage(path: string) {
-  return `${TMDB_IMAGE_ROOT}/original/${path}`;
+  return `${TMDB_IMAGE_ROOT}/w1280/${path}`;
 }
 
 /**

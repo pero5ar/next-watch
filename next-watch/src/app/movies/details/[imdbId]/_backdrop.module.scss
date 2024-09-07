@@ -1,0 +1,13 @@
+.container {
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  top: 50px;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.image {
+  float: right;
+}
