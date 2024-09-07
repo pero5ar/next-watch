@@ -26,7 +26,7 @@
     ],
     "arrow-spacing": "error",
     "block-spacing": "error",
-    "camelcase": "error",
+    "camelcase": ["warn", { "ignoreImports": true }],
     "comma-style": "error",
     "computed-property-spacing": "error",
     "constructor-super": "error",
@@ -372,6 +372,7 @@
           }
         }
       }
-    ]
+    ],
+    "@stylistic/quotes": ["warn", "single"]
   }
 }
