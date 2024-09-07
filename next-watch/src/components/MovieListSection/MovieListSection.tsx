@@ -16,7 +16,7 @@ function MovieListSection({ movies, title }: Props) {
       {title && <h2>{title}</h2>}
       {movies.map((movie) => (
         <Link key={movie.imdbId} href={`/movies/details/${movie.imdbId}`}>
-          <MovieDetailsPreview movie={movie} />
+          <MovieDetailsPreview movie={movie} canFavorite />
         </Link>
       ))}
     </section>

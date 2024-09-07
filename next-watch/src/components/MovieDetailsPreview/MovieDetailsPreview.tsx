@@ -4,12 +4,14 @@ import type { MovieSuggestion } from '@/models/movieSuggestion.model';
 import PosterImage from '@/components/PosterImage';
 
 import styles from './MovieDetailsPreview.module.scss';
+import FavoriteButton from '../FavoriteButton';
 
 interface Props {
   movie: MovieSuggestion;
+  canFavorite?: boolean;
 }
 
-function MovieDetailsPreview({ movie }: Props) {
+function MovieDetailsPreview({ movie, canFavorite }: Props) {
   return (
     <div className={styles.container}>
       <PosterImage
@@ -19,8 +21,11 @@ function MovieDetailsPreview({ movie }: Props) {
         fallback={<div />}
       />
       <div>
-        <span className={styles.title}>{movie.title}</span>
-        <span className={styles.year}> ({movie.year})</span>
+        <div>
+          <span className={styles.title}>{movie.title}</span>
+          <span className={styles.year}> ({movie.year})</span>
+        </div>
+        {canFavorite && <div><FavoriteButton movie={movie} /></div>}
       </div>
     </div>
   );

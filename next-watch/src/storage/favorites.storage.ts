@@ -1,6 +1,6 @@
 'use client';
 
-import type { Movie } from '@/models/movie.model';
+import type { MovieSuggestion } from '@/models/movieSuggestion.model';
 
 export const FAVORITES_STORAGE_PREFIX = 'movies/favorites';
 
@@ -10,12 +10,12 @@ const DATA_LOOKUP_STORAGE_KEY = (imdbId: string) => `${FAVORITES_STORAGE_PREFIX}
 export interface FavoritesState {
   /** imdbID list */
   list: string[];
-  lookup: { [imdbId: string]: Movie | null; };
+  lookup: { [imdbId: string]: MovieSuggestion | null; };
 }
 
 const ERROR_PREFIX = '[Favorites Storage Error]';
 
-export function save(movie: Movie): { isNew: boolean; } {
+export function save(movie: MovieSuggestion): { isNew: boolean; } {
   if (!movie.imdbId) {
     throw new Error(`${ERROR_PREFIX} Missing IMDB ID`);
   }
@@ -61,8 +61,8 @@ export function loadState() {
   const stringifiedList = localStorage.getItem(ID_LIST_STORAGE_KEY);
   const list = JSON.parse<string[]>(stringifiedList || '[]');
 
-  const lookup = list.reduce<Record<string, Movie>>((acc, id) => {
-    const data = JSON.parse<Movie | null>(localStorage.getItem((DATA_LOOKUP_STORAGE_KEY(id))) || 'null');
+  const lookup = list.reduce<Record<string, MovieSuggestion>>((acc, id) => {
+    const data = JSON.parse<MovieSuggestion | null>(localStorage.getItem((DATA_LOOKUP_STORAGE_KEY(id))) || 'null');
     if (data) {
       acc[id] = data;
     }
@@ -78,6 +78,6 @@ export function getAllFavorites() {
   const list = JSON.parse<string[]>(stringifiedList || '[]');
 
   return list
-    .map((id) => JSON.parse<Movie | null>(localStorage.getItem((DATA_LOOKUP_STORAGE_KEY(id))) || 'null'))
+    .map((id) => JSON.parse<MovieSuggestion | null>(localStorage.getItem((DATA_LOOKUP_STORAGE_KEY(id))) || 'null'))
     .filter((item) => !!item);
 }
