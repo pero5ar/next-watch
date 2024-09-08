@@ -116,11 +116,19 @@ a {
 nav {
   height: var(--navbar-height);
   position: sticky;
+  padding: 0 var(--space-xs);
+
   background-color: #000;
+  color: #fff;
+
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
 main {
   height: calc(100vh - var(--navbar-height));
+  padding: var(--space-md) var(--space-xs);
 }
 
 @media (prefers-color-scheme: dark) {

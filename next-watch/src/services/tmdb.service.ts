@@ -129,3 +129,29 @@ export async function findMovies(query: string): Promise<SearchResult> {
     return noResults;
   }
 }
+
+export async function getList(list: 'popular' | 'top_rated' | 'now_playing', page: number = 1) {
+  const url = `https://api.themoviedb.org/3/movie/${list}?language=en-US&page=${page}`;
+  const noResults: SearchResult = {
+    page,
+    results: [],
+    total_pages: 0, // eslint-disable-line camelcase
+    total_results: 0, // eslint-disable-line camelcase
+  };
+
+  try {
+    const res = await fetch(url, getOptions());
+    if (!res.ok) {
+      console.error(ERROR_PREFIX, { status: res.status });
+
+      return noResults;
+    }
+    const result = await res.json();
+
+    return result;
+  } catch (err) {
+    console.error(ERROR_PREFIX, err);
+
+    return noResults;
+  }
+}

@@ -4,6 +4,10 @@ import { unstable_cache } from 'next/cache';
 
 import { create as createMovie } from '@/models/movie.model';
 import { MovieSuggestion, create as createSuggestion } from '@/models/movieSuggestion.model';
+import { SearchResult } from '@/models/api/tmdb.apiModels';
+
+import { randomInt } from '@/utils/number.utils';
+
 import * as TmdbService from './tmdb.service';
 import * as OmdbService from './omdb.service';
 
@@ -40,15 +44,12 @@ export async function getMovieByImdbId(imdbId: string) {
   return await getMovie();
 }
 
-export async function findMovieSuggestions(query: string): Promise<MovieSuggestion[]> {
-  const trimmedQuery = query?.trim() ?? '';
-  if (trimmedQuery.length < MIN_SEARCH_QUERY_LENGTH) {
-    return [];
-  }
-
-  const tmdbSearchResult = await TmdbService.findMovies(trimmedQuery);
-
-  const movieSuggestionPromises = tmdbSearchResult.results.slice(0, MAX_SEARCH_RESULT_LENGTH).map(
+async function mapSearchResultToMovieSuggestions(
+  tmdbSearchResult: SearchResult,
+  limit: number,
+  start: number = 0
+): Promise<MovieSuggestion[]> {
+  const movieSuggestionPromises = tmdbSearchResult.results.slice(start, start + limit).map(
     async (tmdbResult) => {
       const imdbId = await TmdbService.getImdbIdByTmdbId(tmdbResult.id);
 
@@ -57,4 +58,41 @@ export async function findMovieSuggestions(query: string): Promise<MovieSuggesti
   );
 
   return (await Promise.all(movieSuggestionPromises)).filter((suggestion) => !!suggestion);
+}
+
+export async function findMovieSuggestions(query: string): Promise<MovieSuggestion[]> {
+  const trimmedQuery = query?.trim() ?? '';
+  if (trimmedQuery.length < MIN_SEARCH_QUERY_LENGTH) {
+    return [];
+  }
+
+  const tmdbSearchResult = await TmdbService.findMovies(trimmedQuery);
+
+  return await mapSearchResultToMovieSuggestions(tmdbSearchResult, MAX_SEARCH_RESULT_LENGTH);
+}
+
+const getRandomListPageAndStart = (limit: number) => ({
+  page: randomInt(1, 3),
+  start: randomInt(0, 20 - limit),
+});
+
+export async function getNowPlayingMovies(limit: number, randomize?: boolean) {
+  const { page, start } = randomize ? getRandomListPageAndStart(limit) : { page: undefined, start: undefined };
+  const tmdbSearchResult = await TmdbService.getList('now_playing', page);
+
+  return await mapSearchResultToMovieSuggestions(tmdbSearchResult, limit, start);
+}
+
+export async function getPopularMovies(limit: number, randomize?: boolean) {
+  const { page, start } = randomize ? getRandomListPageAndStart(limit) : { page: undefined, start: undefined };
+  const tmdbSearchResult = await TmdbService.getList('popular', page);
+
+  return await mapSearchResultToMovieSuggestions(tmdbSearchResult, limit, start);
+}
+
+export async function getTopRatedMovies(limit: number, randomize?: boolean) {
+  const { page, start } = randomize ? getRandomListPageAndStart(limit) : { page: undefined, start: undefined };
+  const tmdbSearchResult = await TmdbService.getList('top_rated', page);
+
+  return await mapSearchResultToMovieSuggestions(tmdbSearchResult, limit, start);
 }

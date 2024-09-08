@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  redirects: async () => [
+    {
+      source: '/movies',
+      destination: '/',
+      permanent: true,
+    },
+  ],
   reactStrictMode: false, // duplicate providers were being registered and firing duplicate events
   images: {
     remotePatterns: [

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Link from 'next/link';
 
 import { FavoritesProvider } from '@/contexts/favorites/favorites.context';
 
@@ -25,7 +26,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <FavoritesProvider>
           <nav>
+            <Link href="/">Home</Link>
             <NavbarSearch search={searchForMovies} />
+            <Link href="/movies/favorites">Favorites</Link>
           </nav>
           <main>
             {children}
