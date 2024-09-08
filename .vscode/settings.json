@@ -1,0 +1,11 @@
+{
+    "editor.tabSize": 2,
+    "eslint.workingDirectories": [
+        "next-watch"
+    ],
+    "cSpell.words": [
+        "imdb",
+        "omdb",
+        "tmdb"
+    ]
+}

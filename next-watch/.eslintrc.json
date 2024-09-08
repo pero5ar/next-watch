@@ -1,0 +1,378 @@
+{
+  "extends": [
+    "next/core-web-vitals"
+  ],
+  "plugins": [
+    "@stylistic"
+  ],
+  "rules": {
+    "array-bracket-newline": [
+      "error",
+      "consistent"
+    ],
+    "array-bracket-spacing": "error",
+    "array-callback-return": "error",
+    "arrow-body-style": [
+      "error",
+      "as-needed"
+    ],
+    "array-element-newline": [
+      "error",
+      "consistent"
+    ],
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
+    "arrow-spacing": "error",
+    "block-spacing": "error",
+    "camelcase": ["warn", { "ignoreImports": true }],
+    "comma-style": "error",
+    "computed-property-spacing": "error",
+    "constructor-super": "error",
+    "curly": [
+      "error",
+      "multi-line"
+    ],
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "eqeqeq": "error",
+    "for-direction": "error",
+    "function-call-argument-newline": [
+      "error",
+      "consistent"
+    ],
+    "function-paren-newline": [
+      "error",
+      "consistent"
+    ],
+    "implicit-arrow-linebreak": "error",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "jsx-quotes": [
+      "error",
+      "prefer-double"
+    ],
+    "keyword-spacing": "error",
+    "key-spacing": [
+      "error",
+      {
+        "mode": "strict",
+        "beforeColon": false,
+        "afterColon": true
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreUrls": true,
+        "ignoreRegExpLiterals": true
+      }
+    ],
+    "max-statements-per-line": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "newline-per-chained-call": [
+      "error",
+      {
+        "ignoreChainWithDepth": 3
+      }
+    ],
+    "no-async-promise-executor": "error",
+    "no-class-assign": "error",
+    "no-compare-neg-zero": "error",
+    "no-cond-assign": "error",
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "error",
+          "log"
+        ]
+      }
+    ],
+    "no-const-assign": "error",
+    "no-constant-condition": "error",
+    "no-debugger": "error",
+    "no-delete-var": "error",
+    "no-dupe-args": "error",
+    "no-dupe-else-if": "error",
+    "no-dupe-keys": "error",
+    "no-duplicate-case": "error",
+    "no-else-return": "error",
+    "no-empty": "warn",
+    "no-empty-pattern": "error",
+    "no-eq-null": "error",
+    "no-eval": "error",
+    "no-import-assign": "error",
+    "no-lonely-if": "error",
+    "no-sequences": "error",
+    "no-lone-blocks": "error",
+    "no-mixed-spaces-and-tabs": "error",
+    "no-multi-spaces": "error",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 0,
+        "maxBOF": 0
+      }
+    ],
+    "no-trailing-spaces": "error",
+    "no-undef-init": "error",
+    "no-unreachable": "error",
+    "no-useless-computed-key": "error",
+    "no-useless-rename": "error",
+    "no-useless-return": "error",
+    "no-var": "error",
+    "no-whitespace-before-property": "error",
+    "nonblock-statement-body-position": "error",
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": {
+          "multiline": true,
+          "minProperties": 4,
+          "consistent": true
+        },
+        "ObjectPattern": {
+          "multiline": true,
+          "minProperties": 4,
+          "consistent": true
+        },
+        "ImportDeclaration": {
+          "multiline": true,
+          "minProperties": 6,
+          "consistent": false
+        },
+        "ExportDeclaration": {
+          "multiline": true,
+          "minProperties": 2,
+          "consistent": true
+        }
+      }
+    ],
+    "object-property-newline": [
+      "error",
+      {
+        "allowAllPropertiesOnSameLine": true
+      }
+    ],
+    "object-shorthand": "error",
+    "operator-linebreak": [
+      "error",
+      "before",
+      {
+        "overrides": {
+          "=": "ignore",
+          "&&": "ignore"
+        }
+      }
+    ],
+    "padded-blocks": [
+      "error",
+      "never"
+    ],
+    "prefer-const": "warn",
+    "prefer-destructuring": [
+      "error",
+      {
+        "VariableDeclarator": {
+          "array": false,
+          "object": true
+        },
+        "AssignmentExpression": {
+          "array": false,
+          "object": false
+        }
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
+    "prefer-object-spread": "error",
+    "rest-spread-spacing": [
+      "error",
+      "never"
+    ],
+    "semi-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "semi-style": [
+      "error",
+      "last"
+    ],
+    "spaced-comment": [
+      "error",
+      "always"
+    ],
+    "space-before-blocks": "error",
+    "space-in-parens": [
+      "error",
+      "never"
+    ],
+    "space-unary-ops": [
+      "error",
+      {
+        "words": true,
+        "nonwords": false
+      }
+    ],
+    "switch-colon-spacing": "error",
+    "template-curly-spacing": [
+      "error",
+      "never"
+    ],
+    "yoda": "error",
+    "wrap-regex": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react/jsx-closing-bracket-location": [
+      "error"
+    ],
+    "react/jsx-closing-tag-location": [
+      "error"
+    ],
+    "react/jsx-curly-spacing": [
+      "error",
+      "never"
+    ],
+    "react/jsx-first-prop-new-line": "error",
+    "react/jsx-key": "error",
+    "react/jsx-max-props-per-line": [
+      "error",
+      {
+        "maximum": {
+          "single": 2,
+          "multi": 1
+        }
+      }
+    ],
+    "react/jsx-no-bind": [
+      "warn",
+      {
+        "allowBind": true
+      }
+    ],
+    "react/jsx-no-duplicate-props": [
+      "error",
+      {
+        "ignoreCase": true
+      }
+    ],
+    "react/jsx-no-undef": "error",
+    "react/jsx-tag-spacing": "error",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/jsx-wrap-multilines": [
+      "error",
+      {
+        "declaration": "parens-new-line",
+        "assignment": "parens-new-line",
+        "return": "parens-new-line",
+        "arrow": "parens-new-line",
+        "condition": "parens-new-line",
+        "prop": "parens-new-line"
+      }
+    ],
+    "react/no-danger": "warn",
+    "react/no-did-mount-set-state": "error",
+    "react/no-unknown-property": "error",
+    "react/prefer-es6-class": [
+      "error",
+      "always"
+    ],
+    "react/self-closing-comp": "error",
+    "@stylistic/brace-style": [
+      "error",
+      "1tbs",
+      {
+        "allowSingleLine": true
+      }
+    ],
+    "@stylistic/comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never",
+        "enums": "always-multiline",
+        "generics": "ignore",
+        "tuples": "always-multiline"
+      }
+    ],
+    "@stylistic/comma-spacing": [
+      "error"
+    ],
+    "@stylistic/func-call-spacing": [
+      "error"
+    ],
+    "@stylistic/member-delimiter-style": [
+      "warn",
+      {
+        "multiline": {
+          "delimiter": "semi",
+          "requireLast": true
+        },
+        "singleline": {
+          "delimiter": "semi",
+          "requireLast": true
+        }
+      }
+    ],
+    "@stylistic/no-extra-semi": "error",
+    "@stylistic/object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "@stylistic/padding-line-between-statements": [
+      "warn",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      }
+    ],
+    "@stylistic/semi": "error",
+    "@stylistic/space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "never",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "@stylistic/type-annotation-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true,
+        "overrides": {
+          "arrow": {
+            "before": true,
+            "after": true
+          }
+        }
+      }
+    ],
+    "@stylistic/quotes": ["warn", "single"]
+  }
+}
